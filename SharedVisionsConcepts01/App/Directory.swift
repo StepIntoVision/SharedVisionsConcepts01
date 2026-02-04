@@ -18,8 +18,8 @@ struct Directory: View {
         .padding(EdgeInsets(top: 36, leading: 0, bottom: 0, trailing: 0))
         .ornament(attachmentAnchor: .scene(.top)) {
             HStack {
-                Image(systemName: "arrow.down.to.line")
-                Text("Shared Visions")
+                Image(systemName: "vision.pro")
+                Text("Shared Visions – Concepts")
             }
             .font(.largeTitle)
             .padding(20)

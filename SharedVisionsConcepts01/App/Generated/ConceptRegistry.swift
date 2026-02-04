@@ -8,7 +8,7 @@ struct ConceptRegistry {
         type: .WINDOW,
         date: Date("2/1/2026"),
         isFeatured: true,
-        subtitle: "Shared Visions Honeycomb Layout",
+        subtitle: "Profile Honeycomb Background",
         description: "The original honeycomb grid with person nodes and hover effects",
         success: true,
         makeView: { AnyView(Concept001()) }
