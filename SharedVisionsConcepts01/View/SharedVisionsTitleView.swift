@@ -21,7 +21,7 @@ struct SharedVisionsTitleView: View {
             }
             .font(.caption)
 
-            ToggleImmersiveSpaceButton()
+//            ToggleImmersiveSpaceButton()
                 .offset(y: 30)
         }
         .frame(width: 320, height: 320)
