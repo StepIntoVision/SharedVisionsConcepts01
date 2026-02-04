@@ -12,6 +12,16 @@ struct ConceptRegistry {
         description: "The original honeycomb grid with person nodes and hover effects",
         success: true,
         makeView: { AnyView(Concept001()) }
+    ),
+    Concept(
+        title: "Concept 002",
+        type: .SPACE,
+        date: Date("2/4/2026"),
+        isFeatured: true,
+        subtitle: "Space Test",
+        description: "",
+        success: true,
+        makeView: { AnyView(Concept002()) }
     )
     ]
 
