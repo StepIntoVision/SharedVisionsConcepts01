@@ -31,9 +31,10 @@ struct SharedVisionsConcepts01App: App {
                 .environment(appModel)
         })
         .windowResizability(.contentSize)
-        .defaultWindowPlacement { _, context in
+        .defaultWindowPlacement { content, context in
+            let size = content.sizeThatFits(.unspecified)
             if let mainWindow = context.windows.first {
-                return WindowPlacement(.trailing(mainWindow))
+                return WindowPlacement(.trailing(mainWindow), size: size)
             }
             return WindowPlacement(.none)
         }
@@ -45,9 +46,10 @@ struct SharedVisionsConcepts01App: App {
         })
         .windowStyle(.plain)
         .windowResizability(.contentSize)
-        .defaultWindowPlacement { _, context in
+        .defaultWindowPlacement { content, context in
+            let size = content.sizeThatFits(.unspecified)
             if let mainWindow = context.windows.first {
-                return WindowPlacement(.trailing(mainWindow))
+                return WindowPlacement(.trailing(mainWindow), size: size)
             }
             return WindowPlacement(.none)
         }
@@ -64,9 +66,10 @@ struct SharedVisionsConcepts01App: App {
 
         })
         .windowStyle(.volumetric)
-        .defaultWindowPlacement { _, context in
+        .defaultWindowPlacement { content, context in
+            let size = content.sizeThatFits(.unspecified)
             if let mainWindow = context.windows.first {
-                return WindowPlacement(.trailing(mainWindow))
+                return WindowPlacement(.trailing(mainWindow), size: size)
             }
             return WindowPlacement(.none)
         }

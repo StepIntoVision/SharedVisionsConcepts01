@@ -15,11 +15,13 @@
 import SwiftUI
 
 struct Concept001: View {
+    let circleWindowSize: CGFloat = 800
     var body: some View {
         ZStack {
             SharedVisionsBackground()
             SharedVisionsTitleView()
         }
+        .frame(width: circleWindowSize, height: circleWindowSize)
         .glassBackgroundEffect(in: .capsule, displayMode: .always)
     }
 }
