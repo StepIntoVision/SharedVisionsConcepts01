@@ -30,7 +30,7 @@ struct SharedVisionsConcepts01App: App {
             ConceptRouter(route: $route)
                 .environment(appModel)
         })
-        .defaultSize(CGSize(width: 680, height: 400))
+        .windowResizability(.contentSize)
         .defaultWindowPlacement { _, context in
             if let mainWindow = context.windows.first {
                 return WindowPlacement(.trailing(mainWindow))
@@ -44,7 +44,7 @@ struct SharedVisionsConcepts01App: App {
                 .environment(appModel)
         })
         .windowStyle(.plain)
-        .defaultSize(CGSize(width: 680, height: 400))
+        .windowResizability(.contentSize)
         .defaultWindowPlacement { _, context in
             if let mainWindow = context.windows.first {
                 return WindowPlacement(.trailing(mainWindow))

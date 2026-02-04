@@ -6,7 +6,7 @@
 //
 //  Description: The original honeycomb grid with person nodes and hover effects
 //
-//  Type: Window
+//  Type: Window Alt
 //
 //  Featured: true
 //
@@ -20,6 +20,7 @@ struct Concept001: View {
             SharedVisionsBackground()
             SharedVisionsTitleView()
         }
+        .glassBackgroundEffect(in: .capsule, displayMode: .always)
     }
 }
 

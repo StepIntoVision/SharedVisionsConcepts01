@@ -5,7 +5,7 @@ struct ConceptRegistry {
     static let allConcepts: [Concept] = [
     Concept(
         title: "Concept 001",
-        type: .WINDOW,
+        type: .WINDOW_ALT,
         date: Date("2/1/2026"),
         isFeatured: true,
         subtitle: "Profile Honeycomb Background",
@@ -15,7 +15,7 @@ struct ConceptRegistry {
     ),
     Concept(
         title: "Concept 002",
-        type: .VOLUME,
+        type: .WINDOW,
         date: Date("2/4/2026"),
         isFeatured: true,
         subtitle: "Volume Test",
