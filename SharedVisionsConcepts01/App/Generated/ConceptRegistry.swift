@@ -15,10 +15,10 @@ struct ConceptRegistry {
     ),
     Concept(
         title: "Concept 002",
-        type: .SPACE,
+        type: .VOLUME,
         date: Date("2/4/2026"),
         isFeatured: true,
-        subtitle: "Space Test",
+        subtitle: "Volume Test",
         description: "",
         success: true,
         makeView: { AnyView(Concept002()) }
