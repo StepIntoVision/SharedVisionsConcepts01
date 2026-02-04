@@ -9,29 +9,83 @@ import SwiftUI
 
 @main
 struct SharedVisionsConcepts01App: App {
-
     @State private var appModel = AppModel()
+    @State private var modelData = ModelData()
+    @State private var conceptImmersionStyle: ImmersionStyle = .full
 
     var body: some Scene {
-        WindowGroup {
-            MainWindowView()
-                .glassBackgroundEffect(in: .circle, displayMode: .always)
-                .environment(appModel)
-        }
-        // TODO: need to maintain square aspect ratio on resize
-        .defaultSize(width: 800, height: 800)
-        .windowStyle(.plain)
 
-        ImmersiveSpace(id: appModel.immersiveSpaceID) {
-            ImmersiveView()
+        // Main window
+        WindowGroup {
+            Directory()
                 .environment(appModel)
-                .onAppear {
-                    appModel.immersiveSpaceState = .open
-                }
-                .onDisappear {
-                    appModel.immersiveSpaceState = .closed
-                }
+                .environment(modelData)
         }
-        .immersionStyle(selection: .constant(.progressive), in: .progressive)
+        .defaultSize(CGSize(width: 700, height: 640))
+
+        // Router scenes
+
+        // 1. Window: Use this window group to open 2D windows with Concept Content based on the Router
+        WindowGroup(id: "RouterWindow", for: String.self, content: { $route in
+            ConceptRouter(route: $route)
+                .environment(appModel)
+        })
+        .defaultSize(CGSize(width: 680, height: 400))
+        .defaultWindowPlacement { _, context in
+            if let mainWindow = context.windows.first {
+                return WindowPlacement(.trailing(mainWindow))
+            }
+            return WindowPlacement(.none)
+        }
+
+        // 2. Window Alt: Use this window group to open plain 2D windows
+        WindowGroup(id: "RouterWindowAlt", for: String.self, content: { $route in
+            ConceptRouter(route: $route)
+                .environment(appModel)
+        })
+        .windowStyle(.plain)
+        .defaultSize(CGSize(width: 680, height: 400))
+        .defaultWindowPlacement { _, context in
+            if let mainWindow = context.windows.first {
+                return WindowPlacement(.trailing(mainWindow))
+            }
+            return WindowPlacement(.none)
+        }
+
+        // 3. Volume: Use this window group to open 3D Volumes
+        WindowGroup(id: "RouterVolume", for: String.self, content: { $route in
+            let initialSize = Size3D(width: 500, height: 500, depth: 500)
+            let scaler = 4.0
+            ConceptRouter(route: $route)
+                .environment(appModel)
+                .frame(minWidth: initialSize.width, maxWidth: initialSize.width * scaler,
+                       minHeight: initialSize.height, maxHeight: initialSize.height * scaler)
+                .frame(minDepth: initialSize.depth, maxDepth: initialSize.depth * scaler)
+
+        })
+        .windowStyle(.volumetric)
+        .defaultWindowPlacement { _, context in
+            if let mainWindow = context.windows.first {
+                return WindowPlacement(.trailing(mainWindow))
+            }
+            return WindowPlacement(.none)
+        }
+        .windowResizability(.contentSize)
+
+        // 4. Space: Use this immersive scene to open a concept in a mixed immersive space
+        ImmersiveSpace(id: "RouterSpace", for: String.self, content: { $route in
+            ConceptRouter(route: $route)
+                .environment(appModel)
+        })
+        .immersiveEnvironmentBehavior(.coexist)
+
+        // 5. Space Full: Use this immersive scene to open a concept in a full immersive space
+        ImmersiveSpace(id: "RouterSpaceFull", for: String.self, content: { $route in
+            ConceptRouter(route: $route)
+                .environment(appModel)
+        })
+        .immersionStyle(selection: $conceptImmersionStyle, in: .full)
+
     }
+
 }
