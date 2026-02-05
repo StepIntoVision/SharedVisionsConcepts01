@@ -52,9 +52,7 @@ fileprivate struct SharedVisionsTitleView: View {
                 Text("Apple Vision Pro Community")
             }
             .font(.caption)
-
-//            ToggleImmersiveSpaceButton()
-                .offset(y: 30)
+            .offset(y: 30)
         }
         .frame(width: 320, height: 320)
         .glassBackgroundEffect(.automatic, in: .circle, displayMode: .always)
