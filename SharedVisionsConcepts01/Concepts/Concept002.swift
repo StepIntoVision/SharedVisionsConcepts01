@@ -83,6 +83,7 @@ struct Concept002: View {
             sphere3.playAnimation(animation3.repeat())
         }
         .frame(width: 800, height: 800)
+        .debugBorder3D(.white)
 
     }
 }
