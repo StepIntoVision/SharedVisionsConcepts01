@@ -31,13 +31,13 @@ struct SharedVisionsConcepts01App: App {
                 .environment(appModel)
         })
         .windowResizability(.contentSize)
-        .defaultWindowPlacement { content, context in
-            let size = content.sizeThatFits(.unspecified)
-            if let mainWindow = context.windows.first {
-                return WindowPlacement(.trailing(mainWindow), size: size)
-            }
-            return WindowPlacement(.none)
-        }
+//        .defaultWindowPlacement { content, context in
+//            let size = content.sizeThatFits(.unspecified)
+//            if let mainWindow = context.windows.first {
+//                return WindowPlacement(.trailing(mainWindow), size: size)
+//            }
+//            return WindowPlacement(.none)
+//        }
 
         // 2. Window Alt: Use this window group to open plain 2D windows
         WindowGroup(id: "RouterWindowAlt", for: String.self, content: { $route in
@@ -46,13 +46,13 @@ struct SharedVisionsConcepts01App: App {
         })
         .windowStyle(.plain)
         .windowResizability(.contentSize)
-        .defaultWindowPlacement { content, context in
-            let size = content.sizeThatFits(.unspecified)
-            if let mainWindow = context.windows.first {
-                return WindowPlacement(.trailing(mainWindow), size: size)
-            }
-            return WindowPlacement(.none)
-        }
+//        .defaultWindowPlacement { content, context in
+//            let size = content.sizeThatFits(.unspecified)
+//            if let mainWindow = context.windows.first {
+//                return WindowPlacement(.trailing(mainWindow), size: size)
+//            }
+//            return WindowPlacement(.none)
+//        }
 
         // 3. Volume: Use this window group to open 3D Volumes
         WindowGroup(id: "RouterVolume", for: String.self, content: { $route in

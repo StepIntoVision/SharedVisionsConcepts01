@@ -7,6 +7,11 @@
 
 import SwiftUI
 
+// MARK: - Notification Names
+extension Notification.Name {
+    static let conceptViewDidDisappear = Notification.Name("conceptViewDidDisappear")
+}
+
 struct ConceptRouter: View {
     @Binding var route: String?
 
@@ -14,6 +19,14 @@ struct ConceptRouter: View {
     var body: some View {
         if let route, let concept = ConceptRegistry.conceptsByTitle[route] {
             concept.makeView()
+                .onDisappear() {
+                    // Broadcast the disappearance event
+                    NotificationCenter.default.post(
+                        name: .conceptViewDidDisappear,
+                        object: nil,
+                        userInfo: ["conceptTitle": route]
+                    )
+                }
         } else {
             VStack {
                 Text("No View could be found for " + (route ?? ""))

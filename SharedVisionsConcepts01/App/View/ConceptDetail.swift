@@ -13,6 +13,7 @@ struct ConceptDetail: View {
 
     // 2D Windows
     @Environment(\.openWindow) private var openWindow
+    @Environment(\.pushWindow) private var pushWindow
     @Environment(\.dismissWindow) private var dismissWindow
 
     // Immersive Spaces
@@ -79,6 +80,12 @@ struct ConceptDetail: View {
                 }
             }
         }
+        .onReceive(NotificationCenter.default.publisher(for: .conceptViewDidDisappear)) { notification in
+            if notification.userInfo?["conceptTitle"] is String {
+                // Reset the state when the concept view disappears
+                showConceptContent = false
+            }
+        }
         .navigationTitle("Shared Visions")
     }
 
@@ -88,7 +95,7 @@ struct ConceptDetail: View {
             conceptIsOpen = false
             showConceptContent = false
         } else {
-            openWindow(id: "RouterWindow", value: concept.title)
+            pushWindow(id: "RouterWindow", value: concept.title)
             conceptIsOpen = true
         }
     }
@@ -99,7 +106,7 @@ struct ConceptDetail: View {
             conceptIsOpen = false
             showConceptContent = false
         } else {
-            openWindow(id: "RouterWindowAlt", value: concept.title)
+            pushWindow(id: "RouterWindowAlt", value: concept.title)
             conceptIsOpen = true
         }
     }
